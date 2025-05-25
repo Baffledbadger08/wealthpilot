@@ -19,6 +19,23 @@
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
+  <!-- Navigation Bar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <div class="text-xl font-bold">WealthPilot</div>
+        <nav class="space-x-4">
+          <a href="#" class="text-gray-700 hover:text-blue-600 lang lang-de">Start</a>
+          <a href="#about" class="text-gray-700 hover:text-blue-600 lang lang-de">Über</a>
+          <a href="#features" class="text-gray-700 hover:text-blue-600 lang lang-de">Funktionen</a>
+          <a href="#" class="text-gray-700 hover:text-blue-600 lang lang-en hidden">Home</a>
+          <a href="#about" class="text-gray-700 hover:text-blue-600 lang lang-en hidden">About</a>
+          <a href="#features" class="text-gray-700 hover:text-blue-600 lang lang-en hidden">Features</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
   <!-- Language Switcher -->
   <div class="text-sm text-right p-4">
     <button onclick="switchLanguage('de')" class="px-3 py-1 border rounded-lg bg-white hover:bg-gray-200">Deutsch</button>
@@ -67,7 +84,7 @@
   </section>
 
   <!-- Features Section -->
-  <section class="py-20 bg-gray-100 px-6">
+  <section id="features" class="py-20 bg-gray-100 px-6">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl font-bold mb-12 text-center lang lang-de">Funktionen auf einen Blick</h2>
       <h2 class="text-3xl font-bold mb-12 text-center lang lang-en hidden">Key Features at a Glance</h2>

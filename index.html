@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WealthPilot</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
   <script>
     function switchLanguage(lang) {
       document.querySelectorAll('.lang').forEach(el => el.classList.add('hidden'));
@@ -40,7 +45,7 @@
   </section>
 
   <!-- About Section -->
-  <section id="about" class="py-20 bg-white px-6">
+  <section id="about" class="scroll-mt-20 py-20 bg-white px-6">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-4 lang lang-de">Was ist WealthPilot?</h2>
       <h2 class="text-3xl font-bold mb-4 lang lang-en hidden">What is WealthPilot?</h2>

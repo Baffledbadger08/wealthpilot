@@ -125,7 +125,7 @@
       document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const name = document.getElementById('aboName').value;
-        const amount = parseFloat(document.getElementById('amount').value);
+        const amount = parseFloat(document.getElementById('amount').value.replace(',', '.'));
         const interval = parseInt(document.getElementById('interval').value);
         const yearly = (12 / interval) * amount;
         document.getElementById('result').textContent = `"${name}" kostet dich CHF ${yearly.toFixed(2)} pro Jahr.`;

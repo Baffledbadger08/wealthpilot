@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WealthPilot</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>html { scroll-behavior: smooth; }</style>
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
   <script>
     function switchLanguage(lang) {
       document.querySelectorAll('.lang').forEach(el => el.classList.add('hidden'));
@@ -16,6 +17,8 @@
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
+
+  <!-- Navigation -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <div class="text-xl font-bold">WealthPilot</div>
@@ -34,17 +37,23 @@
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
     <h1 class="text-4xl sm:text-6xl font-bold mb-4 lang lang-de">WealthPilot – Deine persönliche Finanzübersicht</h1>
     <h1 class="text-4xl sm:text-6xl font-bold mb-4 lang lang-en hidden">WealthPilot – Your Personal Finance Overview</h1>
-    <p class="text-lg sm:text-xl mb-4 max-w-2xl lang lang-de">WealthPilot ist ein smarter digitaler Finanzassistent, der dir hilft, Einnahmen, Ausgaben, Abos und Investitionen im Blick zu behalten – komplett automatisch und lokal auf deinem Gerät.</p>
-    <p class="text-lg sm:text-xl mb-4 max-w-2xl lang lang-en hidden">WealthPilot is a smart digital finance assistant that helps you track income, expenses, subscriptions, and investments – fully automated and local on your device.</p>
+    <p class="text-lg sm:text-xl mb-4 max-w-2xl lang lang-de">
+      WealthPilot ist ein smarter digitaler Finanzassistent, der dir hilft, Einnahmen, Ausgaben, Abos und Investitionen im Blick zu behalten – komplett automatisch und lokal auf deinem Gerät.
+    </p>
+    <p class="text-lg sm:text-xl mb-4 max-w-2xl lang lang-en hidden">
+      WealthPilot is a smart digital finance assistant that helps you track income, expenses, subscriptions, and investments – fully automated and local on your device.
+    </p>
     <p class="text-lg sm:text-xl mb-6 italic max-w-2xl lang lang-de">Der erste Schritt in deine finanzielle Unabhängigkeit beginnt genau hier.</p>
     <p class="text-lg sm:text-xl mb-6 italic max-w-2xl lang lang-en hidden">The first step towards your financial independence starts right here.</p>
     <a href="#about" class="bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition lang lang-de">Mehr erfahren</a>
     <a href="#about" class="bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition lang lang-en hidden">Learn more</a>
   </section>
 
+  <!-- About -->
   <section id="about" class="py-20 bg-white px-6">
     <div class="max-w-4xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-4 lang lang-de">Was ist WealthPilot?</h2>
@@ -56,19 +65,33 @@
     </div>
   </section>
 
+  <!-- Features -->
   <section id="features" class="py-20 bg-gray-100 px-6">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-3xl font-bold mb-12 text-center lang lang-de">Funktionen auf einen Blick</h2>
       <h2 class="text-3xl font-bold mb-12 text-center lang lang-en hidden">Key Features at a Glance</h2>
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
-        <div><h3 class="text-xl font-semibold lang lang-de">Finanz-Dashboard</h3><p class="lang lang-de">Einnahmen, Ausgaben, Abos & Ziele übersichtlich dargestellt.</p></div>
-        <div><h3 class="text-xl font-semibold lang lang-de">Datenschutz</h3><p class="lang lang-de">100 % lokal – keine Cloud, keine Anmeldung, keine Datenweitergabe.</p></div>
-        <div><h3 class="text-xl font-semibold lang lang-de">Abo-Überwachung</h3><p class="lang lang-de">Behalte laufende Verträge & Kündigungsfristen im Griff.</p></div>
-        <div><h3 class="text-xl font-semibold lang lang-de">Zielverfolgung</h3><p class="lang lang-de">Setze Sparziele und verfolge deinen Fortschritt automatisch.</p></div>
+        <div>
+          <h3 class="text-xl font-semibold lang lang-de">Finanz-Dashboard</h3>
+          <p class="lang lang-de">Einnahmen, Ausgaben, Abos & Ziele übersichtlich dargestellt.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold lang lang-de">Datenschutz</h3>
+          <p class="lang lang-de">100 % lokal – keine Cloud, keine Anmeldung, keine Datenweitergabe.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold lang lang-de">Abo-Überwachung</h3>
+          <p class="lang lang-de">Behalte laufende Verträge & Kündigungsfristen im Griff.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold lang lang-de">Zielverfolgung</h3>
+          <p class="lang lang-de">Setze Sparziele und verfolge deinen Fortschritt automatisch.</p>
+        </div>
       </div>
     </div>
   </section>
-
+  
+  <!-- Mockup -->
   <section class="py-20 bg-white px-6">
     <div class="max-w-5xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-4 lang lang-de">Ein erster Blick</h2>
@@ -78,6 +101,7 @@
     </div>
   </section>
 
+  <!-- Roadmap -->
   <section class="py-20 bg-white px-6">
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-bold text-center mb-12 lang lang-de">Roadmap</h2>
@@ -91,6 +115,7 @@
     </div>
   </section>
 
+  <!-- Email Reminder -->
   <section class="py-20 bg-gray-100 px-6">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-4">Bleib auf dem Laufenden</h2>
@@ -103,6 +128,7 @@
     </div>
   </section>
 
+  <!-- Abo-Kostenrechner -->
   <section class="py-20 bg-white px-6">
     <div class="max-w-2xl mx-auto text-center">
       <h2 class="text-3xl font-bold mb-6">Teste deinen Abo-Kostenfaktor</h2>
@@ -110,7 +136,7 @@
       <div class="bg-gray-100 p-6 rounded-lg shadow">
         <form id="subscriptionForm" class="space-y-4">
           <input type="text" id="aboName" placeholder="Abo-Name (z. B. Netflix)" class="w-full px-4 py-2 rounded border" required>
-          <input type="number" id="amount" placeholder="Betrag in CHF" class="w-full px-4 py-2 rounded border" required>
+          <input type="text" id="amount" placeholder="Betrag in CHF (z. B. 12.50 oder 12,50)" class="w-full px-4 py-2 rounded border" required>
           <select id="interval" class="w-full px-4 py-2 rounded border">
             <option value="1">monatlich</option>
             <option value="3">vierteljährlich</option>
@@ -124,17 +150,26 @@
     <script>
       document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
         e.preventDefault();
-        const name = document.getElementById('aboName').value;
-        const amount = parseFloat(document.getElementById('amount').value.replace(',', '.'));
+        const name = document.getElementById('aboName').value.trim();
+        const rawAmount = document.getElementById('amount').value.trim().replace(',', '.');
+        const amount = parseFloat(rawAmount);
         const interval = parseInt(document.getElementById('interval').value);
+
+        if (isNaN(amount)) {
+          document.getElementById('result').textContent = "Bitte gib einen gültigen Betrag ein.";
+          return;
+        }
+
         const yearly = (12 / interval) * amount;
         document.getElementById('result').textContent = `"${name}" kostet dich CHF ${yearly.toFixed(2)} pro Jahr.`;
       });
     </script>
   </section>
 
+  <!-- Footer -->
   <footer class="text-center text-sm text-gray-500 py-6">
     <p>© 2025 - WealthPilot ist ein Lernprojekt zur privaten Finanzplanung.</p>
   </footer>
+
 </body>
 </html>

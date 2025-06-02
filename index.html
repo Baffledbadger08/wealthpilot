@@ -7,135 +7,146 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
     html { scroll-behavior: smooth; }
-    .dark body { background-color: #1a202c; color: #f7fafc; }
-    .dark header, .dark section, .dark footer { background-color: #2d3748; color: #f7fafc; }
-    .dark input, .dark select, .dark textarea { background-color: #4a5568; color: #f7fafc; border-color: #718096; }
-    .dark button { background-color: #4299e1; }
+    .dark body, .dark header, .dark section, .dark footer {
+      background-color: #1a202c;
+      color: #f7fafc;
+    }
+    .dark input, .dark select, .dark textarea {
+      background-color: #4a5568;
+      color: #f7fafc;
+      border-color: #718096;
+    }
+    .dark button {
+      background-color: #4299e1;
+    }
   </style>
   <script>
     function switchLanguage(lang) {
       document.querySelectorAll('.lang').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.lang-' + lang).forEach(el => el.classList.remove('hidden'));
+      localStorage.setItem('lang', lang);
     }
     function toggleDarkMode() {
       document.documentElement.classList.toggle('dark');
+      localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
     }
     document.addEventListener("DOMContentLoaded", () => {
-      switchLanguage('de');
-      loadSavedAbos();
+      const savedLang = localStorage.getItem('lang') || 'de';
+      const darkMode = localStorage.getItem('darkMode') === 'true';
+      if (darkMode) document.documentElement.classList.add('dark');
+      switchLanguage(savedLang);
+      restoreSubscriptions();
     });
+
+    function restoreSubscriptions() {
+      const saved = JSON.parse(localStorage.getItem('subscriptions') || '[]');
+      saved.forEach(sub => addSubToDOM(sub.name, sub.amount, sub.interval));
+    }
+
+    function addSubToDOM(name, amount, interval) {
+      const yearly = (12 / interval) * amount;
+      const result = document.getElementById('result');
+      const p = document.createElement('p');
+      p.textContent = `"${name}" kostet dich CHF ${yearly.toFixed(2)} pro Jahr.`;
+      result.appendChild(p);
+    }
   </script>
 </head>
 <body class="bg-gray-100 text-gray-800">
-
-<header class="bg-white shadow sticky top-0 z-50 dark:bg-gray-900 dark:text-white">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <div class="text-xl font-bold">WealthPilot</div>
-    <nav class="space-x-4">
-      <a href="#" class="text-black dark:text-white hover:text-blue-400 lang lang-de">Start</a>
-      <a href="#about" class="text-black dark:text-white hover:text-blue-400 lang lang-de">Über</a>
-      <a href="#features" class="text-black dark:text-white hover:text-blue-400 lang lang-de">Funktionen</a>
-    </nav>
-    <div class="flex space-x-2">
-      <button onclick="switchLanguage('de')" class="text-sm px-3 py-1 border rounded-lg bg-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white">Deutsch</button>
-      <button onclick="switchLanguage('en')" class="text-sm px-3 py-1 border rounded-lg bg-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white">English</button>
-      <button onclick="toggleDarkMode()" class="text-sm px-3 py-1 border rounded-lg bg-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white">🌙</button>
+  <header class="bg-white shadow sticky top-0 z-50 dark:bg-gray-900 dark:text-white">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="text-xl font-bold">WealthPilot</div>
+      <nav class="space-x-4">
+        <a href="#" class="text-black dark:text-white hover:text-blue-400 lang lang-de">Start</a>
+        <a href="#about" class="text-black dark:text-white hover:text-blue-400 lang lang-de">Über</a>
+        <a href="#features" class="text-black dark:text-white hover:text-blue-400 lang lang-de">Funktionen</a>
+      </nav>
+      <div class="flex space-x-2">
+        <button onclick="switchLanguage('de')" class="text-sm px-3 py-1 border rounded-lg bg-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white">Deutsch</button>
+        <button onclick="switchLanguage('en')" class="text-sm px-3 py-1 border rounded-lg bg-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white">English</button>
+        <button onclick="toggleDarkMode()" class="text-sm px-3 py-1 border rounded-lg bg-white hover:bg-gray-200 dark:bg-gray-700 dark:text-white">🌙</button>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
-  <h1 class="text-4xl sm:text-6xl font-bold mb-4">WealthPilot – Deine persönliche Finanzübersicht</h1>
-  <p class="text-lg sm:text-xl mb-4 max-w-2xl">Der erste Schritt in deine finanzielle Unabhängigkeit beginnt genau hier.</p>
-  <a href="#about" class="bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition">Mehr erfahren</a>
-</section>
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-4xl sm:text-6xl font-bold mb-4">WealthPilot – Deine persönliche Finanzübersicht</h1>
+    <p class="text-lg sm:text-xl mb-4 max-w-2xl">Der erste Schritt in deine finanzielle Unabhängigkeit beginnt genau hier.</p>
+    <a href="#about" class="bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition">Mehr erfahren</a>
+  </section>
 
-<section id="about" class="py-20 bg-white px-6 dark:bg-gray-800">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-4">Was ist WealthPilot?</h2>
-    <p class="text-lg mb-4">WealthPilot analysiert deine Finanzdaten und zeigt dir übersichtlich, wie viel du ausgibst und sparst – komplett lokal auf deinem Gerät.</p>
-  </div>
-</section>
-
-<section id="features" class="py-20 bg-gray-100 px-6 dark:bg-gray-800">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-12 text-center">Funktionen auf einen Blick</h2>
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
-      <div><h3 class="text-xl font-semibold">Dashboard</h3><p>Übersicht über Einnahmen, Ausgaben und Abos.</p></div>
-      <div><h3 class="text-xl font-semibold">Datenschutz</h3><p>100% lokal – keine Cloud, keine Anmeldung.</p></div>
-      <div><h3 class="text-xl font-semibold">Abo-Überwachung</h3><p>Verwalte laufende Verträge und Fristen.</p></div>
-      <div><h3 class="text-xl font-semibold">Ziele</h3><p>Spare auf große Träume – mit Fortschrittsanzeige.</p></div>
+  <section id="about" class="py-20 bg-white px-6 dark:bg-gray-800">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Was ist WealthPilot?</h2>
+      <p class="text-lg mb-4">WealthPilot analysiert deine Finanzdaten und zeigt dir übersichtlich, wie viel du ausgibst und sparst – komplett lokal auf deinem Gerät.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="py-20 bg-white px-6 dark:bg-gray-800">
-  <div class="max-w-5xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-4">Ein erster Blick</h2>
-    <img src="https://i.imgur.com/DFbvRdr.png" alt="Mockup" class="rounded-xl shadow-lg w-full" />
-    <p class="text-xs text-gray-400 italic mt-4">Alle Inhalte sind fiktiv. Keine Verbindung zu realen Marken.</p>
-  </div>
-</section>
-
-<section class="py-20 bg-white px-6 dark:bg-gray-800">
-  <div class="max-w-2xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-6">Teste deinen Abo-Kostenfaktor</h2>
-    <p class="text-lg mb-8">Gib ein Abo ein und finde heraus, was es dich im Jahr wirklich kostet.</p>
-    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow">
-      <form id="subscriptionForm" class="space-y-4">
-        <input type="text" id="aboName" placeholder="Abo-Name" class="w-full px-4 py-2 rounded border" required>
-        <input type="text" id="amount" placeholder="Betrag in CHF (12,50 oder 12.50)" class="w-full px-4 py-2 rounded border" required>
-        <select id="interval" class="w-full px-4 py-2 rounded border">
-          <option value="1">monatlich</option>
-          <option value="3">vierteljährlich</option>
-          <option value="12">jährlich</option>
-        </select>
-        <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Berechnen & Speichern</button>
-      </form>
-      <p id="result" class="mt-6 text-lg font-semibold"></p>
-      <div id="savedAbos" class="mt-6 text-left space-y-2"></div>
+  <section id="features" class="py-20 bg-gray-100 px-6 dark:bg-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 text-center">Funktionen auf einen Blick</h2>
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 text-center">
+        <div><h3 class="text-xl font-semibold">Dashboard</h3><p>Übersicht über Einnahmen, Ausgaben und Abos.</p></div>
+        <div><h3 class="text-xl font-semibold">Datenschutz</h3><p>100% lokal – keine Cloud, keine Anmeldung.</p></div>
+        <div><h3 class="text-xl font-semibold">Abo-Überwachung</h3><p>Verwalte laufende Verträge und Fristen.</p></div>
+        <div><h3 class="text-xl font-semibold">Ziele</h3><p>Spare auf große Träume – mit Fortschrittsanzeige.</p></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="text-center text-sm text-gray-500 py-6 dark:bg-gray-900 dark:text-gray-300">
-  <p>© 2025 - WealthPilot ist ein Lernprojekt zur privaten Finanzplanung.</p>
-</footer>
+  <section class="py-20 bg-white px-6 dark:bg-gray-800">
+    <div class="max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Ein erster Blick</h2>
+      <img src="https://i.imgur.com/DFbvRdr.png" alt="Mockup" class="rounded-xl shadow-lg w-full" />
+      <p class="text-xs text-gray-400 italic mt-4">Alle Inhalte sind fiktiv. Keine Verbindung zu realen Marken.</p>
+    </div>
+  </section>
 
-<script>
-  function saveAbo(name, yearly) {
-    const existing = JSON.parse(localStorage.getItem("abos")) || [];
-    existing.push({ name, yearly });
-    localStorage.setItem("abos", JSON.stringify(existing));
-    loadSavedAbos();
-  }
+  <section class="py-20 bg-gray-100 px-6 dark:bg-gray-800">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">Teste deinen Abo-Kostenfaktor</h2>
+      <p class="text-lg mb-8">Gib ein Abo ein und finde heraus, was es dich im Jahr wirklich kostet.</p>
+      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+        <form id="subscriptionForm" class="space-y-4">
+          <input type="text" id="aboName" placeholder="Abo-Name" class="w-full px-4 py-2 rounded border" required>
+          <input type="text" id="amount" placeholder="Betrag in CHF (12,50 oder 12.50)" class="w-full px-4 py-2 rounded border" required>
+          <select id="interval" class="w-full px-4 py-2 rounded border">
+            <option value="1">monatlich</option>
+            <option value="3">vierteljährlich</option>
+            <option value="12">jährlich</option>
+          </select>
+          <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Berechnen</button>
+        </form>
+        <div id="result" class="mt-6 space-y-2 text-left"></div>
+      </div>
+    </div>
+    <script>
+      document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('aboName').value.trim();
+        const rawAmount = document.getElementById('amount').value.trim().replace(',', '.');
+        const amount = parseFloat(rawAmount);
+        const interval = parseInt(document.getElementById('interval').value);
 
-  function loadSavedAbos() {
-    const saved = JSON.parse(localStorage.getItem("abos")) || [];
-    const container = document.getElementById("savedAbos");
-    container.innerHTML = "<h3 class='font-bold mb-2'>Gespeicherte Abos:</h3>";
-    saved.forEach((abo, i) => {
-      const p = document.createElement("p");
-      p.textContent = `"${abo.name}" – CHF ${abo.yearly.toFixed(2)} / Jahr`;
-      container.appendChild(p);
-    });
-  }
+        if (isNaN(amount)) {
+          alert("Bitte gib einen gültigen Betrag ein.");
+          return;
+        }
 
-  document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('aboName').value.trim();
-    const rawAmount = document.getElementById('amount').value.trim().replace(',', '.');
-    const amount = parseFloat(rawAmount);
-    const interval = parseInt(document.getElementById('interval').value);
-    if (isNaN(amount)) {
-      document.getElementById('result').textContent = "Bitte gib einen gültigen Betrag ein.";
-      return;
-    }
-    const yearly = (12 / interval) * amount;
-    document.getElementById('result').textContent = `"${name}" kostet dich CHF ${yearly.toFixed(2)} pro Jahr.`;
-    saveAbo(name, yearly);
-  });
-</script>
+        const yearly = (12 / interval) * amount;
+        addSubToDOM(name, amount, interval);
 
+        const stored = JSON.parse(localStorage.getItem('subscriptions') || '[]');
+        stored.push({ name, amount, interval });
+        localStorage.setItem('subscriptions', JSON.stringify(stored));
+
+        document.getElementById('subscriptionForm').reset();
+      });
+    </script>
+  </section>
+
+  <footer class="text-center text-sm text-gray-500 py-6 dark:bg-gray-900 dark:text-gray-300">
+    <p>© 2025 - WealthPilot ist ein Lernprojekt zur privaten Finanzplanung.</p>
+  </footer>
 </body>
 </html>
